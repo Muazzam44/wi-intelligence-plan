@@ -1,0 +1,5558 @@
+{
+  "name": "intelligence",
+  "version": "0.1.0",
+  "status": "planning",
+  "purpose": "Bring `Rapidtackltd/humanos-backend-services` from its assessed 25.4% alignment with",
+  "updatedAt": null,
+  "projectConcept": {
+    "title": "intelligence",
+    "summary": "Bring `Rapidtackltd/humanos-backend-services` from its assessed 25.4% alignment with"
+  },
+  "stages": [
+    {
+      "id": "W1",
+      "wave": "1",
+      "name": "",
+      "moduleIds": [
+        "M01",
+        "M02",
+        "M03"
+      ]
+    },
+    {
+      "id": "W2",
+      "wave": "2",
+      "name": "",
+      "moduleIds": [
+        "M04",
+        "M05",
+        "M06",
+        "M07"
+      ]
+    },
+    {
+      "id": "W3",
+      "wave": "3",
+      "name": "",
+      "moduleIds": [
+        "M08",
+        "M09",
+        "M10",
+        "M11",
+        "M12",
+        "M13"
+      ]
+    },
+    {
+      "id": "W4",
+      "wave": "4",
+      "name": "",
+      "moduleIds": [
+        "M14",
+        "M15",
+        "M16",
+        "M17",
+        "M18"
+      ]
+    },
+    {
+      "id": "W5",
+      "wave": "5",
+      "name": "",
+      "moduleIds": [
+        "M19",
+        "M20",
+        "M21"
+      ]
+    },
+    {
+      "id": "W6",
+      "wave": "6",
+      "name": "",
+      "moduleIds": [
+        "M22"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "M01",
+      "title": "Disable central CLI defaults",
+      "tier": 0,
+      "tier_rationale": "a default route can silently bill/expose a personal subscription account (AUD-009) \u2014 credential/account boundary",
+      "status": "draft",
+      "wave": 1,
+      "depends_on": [],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "RouteDefaultsPolicy"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M01.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN any central or background workload requests a route, THE SYSTEM SHALL never select the user-subscription CLI unless the request carries the explicit endpoint-interactive development profile.",
+        "WHEN the endpoint-interactive profile is absent, THE SYSTEM SHALL resolve defaults exclusively to approved connector routes."
+      ],
+      "satisfies": [
+        "T02"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [],
+      "provides_full": [
+        {
+          "interface": "RouteDefaultsPolicy",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "title": "humanos-ai-contracts v1",
+      "tier": 0,
+      "tier_rationale": "the contract of record every governed AI call rides; every dependent module binds to it",
+      "status": "draft",
+      "wave": 1,
+      "depends_on": [],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "AiContractsV1"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M02.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the shared client, runtime gateway and ai-execution-service exchange requests, THE SYSTEM SHALL pass versioned contract fixtures including negative cases (REM-002 acceptance).",
+        "WHEN a pure service-to-service request arrives, THE SYSTEM SHALL reconcile a service identity with audience and purpose claims before honouring a caller-supplied tenant (AUD-016).",
+        "WHEN a field the contract requires is absent, THE SYSTEM SHALL refuse the request with the canonical error taxonomy, never default it."
+      ],
+      "satisfies": [
+        "T03"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [],
+      "provides_full": [
+        {
+          "interface": "AiContractsV1",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "title": "Claude CLI process safety",
+      "tier": 0,
+      "tier_rationale": "concrete security/reliability defect \u2014 path hijack, inherited env, stderr deadlock, ineffective timeout (AUD-011)",
+      "status": "draft",
+      "wave": 1,
+      "depends_on": [],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "SafeCliInvocation"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M03.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a CLI process hangs, THE SYSTEM SHALL terminate the whole process tree within the timeout budget with no stderr deadlock.",
+        "WHEN the CLI is resolved, THE SYSTEM SHALL execute only a signed executable from an approved path with a clean environment and approved working directory, and SHALL NOT reach outside the approved root."
+      ],
+      "satisfies": [
+        "T04"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [],
+      "provides_full": [
+        {
+          "interface": "SafeCliInvocation",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M04",
+      "title": "Endpoint AI Runtime Broker",
+      "tier": 0,
+      "tier_rationale": "moves subscription/local-runtime execution to the managed endpoint boundary; central OAuth access is a hard boundary (T04)",
+      "status": "draft",
+      "wave": 2,
+      "depends_on": [
+        "M02",
+        "M03"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "EndpointBrokerAPI"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M04.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN any central component needs endpoint execution, THE SYSTEM SHALL delegate to the broker and SHALL NOT access user-local OAuth or credentials.",
+        "WHEN the broker executes, THE SYSTEM SHALL report health/action-required states and return canonical contract results."
+      ],
+      "satisfies": [
+        "T04"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M03",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "EndpointBrokerAPI",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M05",
+      "title": "Provider-scoped credential resolution",
+      "tier": 0,
+      "tier_rationale": "silent tenant-to-platform account/data-route switch is a privacy/billing incident (AUD-015)",
+      "status": "draft",
+      "wave": 2,
+      "depends_on": [
+        "M02"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "CredentialResolution"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M05.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the tenant credential service is unavailable, THE SYSTEM SHALL fail per policy and SHALL NOT silently switch to a platform key, account, provider or data route.",
+        "WHEN credentials rotate, THE SYSTEM SHALL pass rotation, outage, tenant and identity tests without cross-tenant leakage."
+      ],
+      "satisfies": [
+        "T05"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "CredentialResolution",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M06",
+      "title": "Evidence-object persistence (no raw prompts)",
+      "tier": 0,
+      "tier_rationale": "writes the record of record for AI evidence; raw prompt/output persistence is incompatible with retention/employee rights (AUD-018)",
+      "status": "draft",
+      "wave": 2,
+      "depends_on": [
+        "M02"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "EvidenceObjectRefs"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M06.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a new execution is persisted, THE SYSTEM SHALL store no mandatory raw input/output text fields \u2014 only classified object references and minimised metadata.",
+        "WHEN retention, correction, deletion or hold events occur, THE SYSTEM SHALL propagate them across the evidence lineage and pass the privacy/DR test set."
+      ],
+      "satisfies": [
+        "T06"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "EvidenceObjectRefs",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M07",
+      "title": "Exact model-deployment registry",
+      "tier": 0,
+      "tier_rationale": "route identity is the substrate of qualification and audit; family/alias-only identity voids both (T07)",
+      "status": "draft",
+      "wave": 2,
+      "depends_on": [
+        "M02"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "ModelDeploymentRegistry"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M07.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a route becomes active, THE SYSTEM SHALL represent it by an exact model deployment and SHALL NOT accept a family/alias-only representation.",
+        "WHEN a deployment alias cannot be resolved to an exact identity, THE SYSTEM SHALL shorten or disable its qualification (AUD-020)."
+      ],
+      "satisfies": [
+        "T07"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "ModelDeploymentRegistry",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M08",
+      "title": "Qualification lifecycle & hard gate",
+      "tier": 0,
+      "tier_rationale": "decides which model configurations may execute employee-affecting work; an unqualified route is a policy breach (T08)",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M07"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "QualificationGate"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M08.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a route candidate lacks a current qualification for the task\u00d7effort cell, THE SYSTEM SHALL exclude it before selection (negative tests).",
+        "WHEN a qualification expires, THE SYSTEM SHALL stop selecting the configuration until requalified.",
+        "WHILE tool calling is prompt-simulated (AUD-012), THE SYSTEM SHALL never qualify that mode for production tool-use cells."
+      ],
+      "satisfies": [
+        "T08"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "QualificationGate",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M09",
+      "title": "Eligibility router & canonical fallback",
+      "tier": 0,
+      "tier_rationale": "the routing decision is the policy enforcement point for every AI call; fallback semantics carry employee-rights consequences (T09)",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M05",
+        "M07",
+        "M08",
+        "M02"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "RoutingDecision"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M09.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN candidates are filtered, THE SYSTEM SHALL record every rejected candidate's reason auditably, and cost SHALL NOT make an ineligible route eligible.",
+        "WHEN no eligible route exists, THE SYSTEM SHALL resolve to the canonical no-route/human-review/no-AI terminal \u2014 never a silent material route change.",
+        "WHEN AI is unavailable, THE SYSTEM SHALL never convert that into employee failure (journey tests)."
+      ],
+      "satisfies": [
+        "T08",
+        "T09"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M05",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M08",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "RoutingDecision",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M10",
+      "title": "Complete inference lineage",
+      "tier": 0,
+      "tier_rationale": "material AI-assisted domain records are records of record; incomplete lineage breaks audit and review rights (T10)",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M02",
+        "M07",
+        "M09"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "InferenceLineage"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M10.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a material AI-assisted domain record is written, THE SYSTEM SHALL attach complete lineage \u2014 100% coverage in the audit read-model (REM-011)."
+      ],
+      "satisfies": [
+        "T10"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M09",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "InferenceLineage",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M11",
+      "title": "Monorepo provider cutover",
+      "tier": 0,
+      "tier_rationale": "direct provider SDK/HTTP use outside the choke point voids every gateway control (T01)",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M02"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "ProviderCutoverProof"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M11.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the dependency scan runs, THE SYSTEM SHALL show no service outside approved connector modules importing provider config/SDK or sending provider HTTP requests."
+      ],
+      "satisfies": [
+        "T01"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "ProviderCutoverProof",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M12",
+      "title": "Codex read-only review wrapper",
+      "tier": 1,
+      "tier_rationale": "development tooling with permission boundaries; performs no record-of-record mutation itself \u2014 M14 is the merge authority",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M02",
+        "M04"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "CodexReviewConnector"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M12.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN Codex reviews plan/diff/test evidence, THE SYSTEM SHALL prevent any worktree modification or merge action (permission tests).",
+        "WHEN findings are produced, THE SYSTEM SHALL capture the exact model identity and structured finding schema; injection tests pass."
+      ],
+      "satisfies": [
+        "T11"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M04",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "CodexReviewConnector",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M13",
+      "title": "Fable & Opus development task profiles",
+      "tier": 1,
+      "tier_rationale": "profile/policy configuration for dev routing; enforcement authorities are M08/M14",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M02",
+        "M04"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "DevTaskProfiles"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M13.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the Fable profile executes, THE SYSTEM SHALL refuse coding-write capabilities; WHEN the Opus profile executes, THE SYSTEM SHALL refuse self-review/merge capabilities (policy tests)."
+      ],
+      "satisfies": [
+        "T11"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M04",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "DevTaskProfiles",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M14",
+      "title": "CI + named-human merge gate",
+      "tier": 0,
+      "tier_rationale": "protected-branch merge is an irreversible governance act; an AI-only merge is the exact failure T11 forbids",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M12",
+        "M13"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "ProtectedMergeGate"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M14.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a merge to a protected branch is attempted, THE SYSTEM SHALL require deterministic CI, resolved Codex blockers/majors and a named human approval \u2014 no AI-only merge (repository control test)."
+      ],
+      "satisfies": [
+        "T11"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M12",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M13",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "ProtectedMergeGate",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M15",
+      "title": "Provider connectors (native + constrained compatible)",
+      "tier": 1,
+      "tier_rationale": "connectors execute under M09's eligibility gates; floor anchor for provider correctness",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M02",
+        "M07"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "ConnectorConformance"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M15.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a connector lacks a probed capability, THE SYSTEM SHALL reject the feature before execution (conformance).",
+        "WHEN provider errors occur, THE SYSTEM SHALL keep sensitive provider bodies out of logs and record exact route/features."
+      ],
+      "satisfies": [
+        "T01"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "ConnectorConformance",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M16",
+      "title": "Provider health, budgets & circuit breaking",
+      "tier": 1,
+      "tier_rationale": "operational signal source consumed by the router; no direct record mutation",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M09"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "HealthBudgetSignals"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M16.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a route is unhealthy or over budget, THE SYSTEM SHALL exclude it without weakening any policy guarantee (chaos/load tests)."
+      ],
+      "satisfies": [
+        "T08"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M09",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "HealthBudgetSignals",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M17",
+      "title": "Model catalogue endpoint security",
+      "tier": 1,
+      "tier_rationale": "information-disclosure control on the registry surface",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M07"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "SecuredCatalogue"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M17.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN an unauthenticated caller queries the catalogue, THE SYSTEM SHALL NOT enumerate internal providers, prices or routes (API security test)."
+      ],
+      "satisfies": [
+        "T07"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "SecuredCatalogue",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M18",
+      "title": "Durable audit ledger & quality feedback",
+      "tier": 1,
+      "tier_rationale": "durability layer under M10's lineage; loses no mandatory audit events",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M10"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "DurableAuditLedger"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M18.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the ledger is unavailable, THE SYSTEM SHALL NOT lose mandatory audit/quality events (outbox/reconciliation tests)."
+      ],
+      "satisfies": [
+        "T10"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M10",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "DurableAuditLedger",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M19",
+      "title": "Qualification corpus & initial runs",
+      "tier": 1,
+      "tier_rationale": "produces signed evaluation artefacts; the enforcement authority remains M08",
+      "status": "draft",
+      "wave": 5,
+      "depends_on": [
+        "M08",
+        "M12",
+        "M13",
+        "M15"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "QualifiedProfiles"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M19.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN qualification runs complete, THE SYSTEM SHALL produce signed task\u00d7effort profiles with limitations, and SHALL NOT emit a global model approval."
+      ],
+      "satisfies": [
+        "T08",
+        "T11"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M08",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M12",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M13",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M15",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "QualifiedProfiles",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M20",
+      "title": "Stage 12A assurance execution",
+      "tier": 0,
+      "tier_rationale": "the hardening gate of record before any employee pilot (T13)",
+      "status": "draft",
+      "wave": 5,
+      "depends_on": [
+        "M04",
+        "M06",
+        "M09",
+        "M11",
+        "M14"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "Stage12AEvidence"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M20.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the gate is convened, THE SYSTEM SHALL present per-track evidence rows mapped to the Stage 12A gate sheet; PASS or RESTRICT is a human decision this module cannot make (OI-03)."
+      ],
+      "satisfies": [
+        "T13"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M04",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M06",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M09",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M11",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M14",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "Stage12AEvidence",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M21",
+      "title": "Standalone router decision spike",
+      "tier": 2,
+      "tier_rationale": "a decision spike producing an ADR; no production operation performed",
+      "status": "blocked-needs-decision",
+      "wave": 5,
+      "depends_on": [
+        "M02",
+        "M08",
+        "M09"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "RouterDecisionRecord"
+      ],
+      "model": "Sonnet",
+      "reviewer": "Codex",
+      "file": "modules\\M21.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the CTO decision is recorded, THE SYSTEM SHALL either close this module as decision-evidence-only or open a build change-proposal via plan-change."
+      ],
+      "satisfies": [],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M08",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M09",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "RouterDecisionRecord",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M22",
+      "title": "Pilot protocol readiness",
+      "tier": 0,
+      "tier_rationale": "a real employee pilot bears directly on employee rights; running it early is the exact harm T13 fences",
+      "status": "blocked-needs-decision",
+      "wave": 6,
+      "depends_on": [
+        "M20"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "PilotProtocolRun"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M22.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHILE the Stage 12A gate has not passed or restricted, THE SYSTEM SHALL NOT start any real employee pilot.",
+        "WHEN the pilot runs, THE SYSTEM SHALL uphold participant rights (inspect/correct/dispute/appeal) and never let AI directly decide dismissal, pay, promotion, probation or discipline."
+      ],
+      "satisfies": [
+        "T12",
+        "T13"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M20",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "PilotProtocolRun",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    }
+  ],
+  "knowledgeModel": {
+    "nodes": [
+      {
+        "id": "M01",
+        "type": "module",
+        "label": "Disable central CLI defaults",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M02",
+        "type": "module",
+        "label": "humanos-ai-contracts v1",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M03",
+        "type": "module",
+        "label": "Claude CLI process safety",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M04",
+        "type": "module",
+        "label": "Endpoint AI Runtime Broker",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M05",
+        "type": "module",
+        "label": "Provider-scoped credential resolution",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M06",
+        "type": "module",
+        "label": "Evidence-object persistence (no raw prompts)",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M07",
+        "type": "module",
+        "label": "Exact model-deployment registry",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M08",
+        "type": "module",
+        "label": "Qualification lifecycle & hard gate",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M09",
+        "type": "module",
+        "label": "Eligibility router & canonical fallback",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M10",
+        "type": "module",
+        "label": "Complete inference lineage",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M11",
+        "type": "module",
+        "label": "Monorepo provider cutover",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M12",
+        "type": "module",
+        "label": "Codex read-only review wrapper",
+        "tier": 1,
+        "status": "draft"
+      },
+      {
+        "id": "M13",
+        "type": "module",
+        "label": "Fable & Opus development task profiles",
+        "tier": 1,
+        "status": "draft"
+      },
+      {
+        "id": "M14",
+        "type": "module",
+        "label": "CI + named-human merge gate",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M15",
+        "type": "module",
+        "label": "Provider connectors (native + constrained compatible)",
+        "tier": 1,
+        "status": "draft"
+      },
+      {
+        "id": "M16",
+        "type": "module",
+        "label": "Provider health, budgets & circuit breaking",
+        "tier": 1,
+        "status": "draft"
+      },
+      {
+        "id": "M17",
+        "type": "module",
+        "label": "Model catalogue endpoint security",
+        "tier": 1,
+        "status": "draft"
+      },
+      {
+        "id": "M18",
+        "type": "module",
+        "label": "Durable audit ledger & quality feedback",
+        "tier": 1,
+        "status": "draft"
+      },
+      {
+        "id": "M19",
+        "type": "module",
+        "label": "Qualification corpus & initial runs",
+        "tier": 1,
+        "status": "draft"
+      },
+      {
+        "id": "M20",
+        "type": "module",
+        "label": "Stage 12A assurance execution",
+        "tier": 0,
+        "status": "draft"
+      },
+      {
+        "id": "M21",
+        "type": "module",
+        "label": "Standalone router decision spike",
+        "tier": 2,
+        "status": "blocked-needs-decision"
+      },
+      {
+        "id": "M22",
+        "type": "module",
+        "label": "Pilot protocol readiness",
+        "tier": 0,
+        "status": "blocked-needs-decision"
+      },
+      {
+        "id": "iface:RouteDefaultsPolicy",
+        "type": "interface",
+        "label": "RouteDefaultsPolicy"
+      },
+      {
+        "id": "iface:AiContractsV1",
+        "type": "interface",
+        "label": "AiContractsV1"
+      },
+      {
+        "id": "iface:SafeCliInvocation",
+        "type": "interface",
+        "label": "SafeCliInvocation"
+      },
+      {
+        "id": "iface:EndpointBrokerAPI",
+        "type": "interface",
+        "label": "EndpointBrokerAPI"
+      },
+      {
+        "id": "iface:CredentialResolution",
+        "type": "interface",
+        "label": "CredentialResolution"
+      },
+      {
+        "id": "iface:EvidenceObjectRefs",
+        "type": "interface",
+        "label": "EvidenceObjectRefs"
+      },
+      {
+        "id": "iface:ModelDeploymentRegistry",
+        "type": "interface",
+        "label": "ModelDeploymentRegistry"
+      },
+      {
+        "id": "iface:QualificationGate",
+        "type": "interface",
+        "label": "QualificationGate"
+      },
+      {
+        "id": "iface:RoutingDecision",
+        "type": "interface",
+        "label": "RoutingDecision"
+      },
+      {
+        "id": "iface:InferenceLineage",
+        "type": "interface",
+        "label": "InferenceLineage"
+      },
+      {
+        "id": "iface:ProviderCutoverProof",
+        "type": "interface",
+        "label": "ProviderCutoverProof"
+      },
+      {
+        "id": "iface:CodexReviewConnector",
+        "type": "interface",
+        "label": "CodexReviewConnector"
+      },
+      {
+        "id": "iface:DevTaskProfiles",
+        "type": "interface",
+        "label": "DevTaskProfiles"
+      },
+      {
+        "id": "iface:ProtectedMergeGate",
+        "type": "interface",
+        "label": "ProtectedMergeGate"
+      },
+      {
+        "id": "iface:ConnectorConformance",
+        "type": "interface",
+        "label": "ConnectorConformance"
+      },
+      {
+        "id": "iface:HealthBudgetSignals",
+        "type": "interface",
+        "label": "HealthBudgetSignals"
+      },
+      {
+        "id": "iface:SecuredCatalogue",
+        "type": "interface",
+        "label": "SecuredCatalogue"
+      },
+      {
+        "id": "iface:DurableAuditLedger",
+        "type": "interface",
+        "label": "DurableAuditLedger"
+      },
+      {
+        "id": "iface:QualifiedProfiles",
+        "type": "interface",
+        "label": "QualifiedProfiles"
+      },
+      {
+        "id": "iface:Stage12AEvidence",
+        "type": "interface",
+        "label": "Stage12AEvidence"
+      },
+      {
+        "id": "iface:RouterDecisionRecord",
+        "type": "interface",
+        "label": "RouterDecisionRecord"
+      },
+      {
+        "id": "iface:PilotProtocolRun",
+        "type": "interface",
+        "label": "PilotProtocolRun"
+      },
+      {
+        "id": "res:db",
+        "type": "shared-resource",
+        "label": "db"
+      }
+    ],
+    "edges": [
+      {
+        "from": "M01",
+        "to": "iface:RouteDefaultsPolicy",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "iface:AiContractsV1",
+        "type": "provides"
+      },
+      {
+        "from": "M03",
+        "to": "iface:SafeCliInvocation",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "M04",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M03",
+        "to": "M04",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M04",
+        "to": "iface:EndpointBrokerAPI",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "M05",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M05",
+        "to": "iface:CredentialResolution",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "M06",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M06",
+        "to": "iface:EvidenceObjectRefs",
+        "type": "provides"
+      },
+      {
+        "from": "M06",
+        "to": "res:db",
+        "type": "uses-resource"
+      },
+      {
+        "from": "M02",
+        "to": "M07",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M07",
+        "to": "iface:ModelDeploymentRegistry",
+        "type": "provides"
+      },
+      {
+        "from": "M07",
+        "to": "res:db",
+        "type": "uses-resource"
+      },
+      {
+        "from": "M07",
+        "to": "M08",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M08",
+        "to": "iface:QualificationGate",
+        "type": "provides"
+      },
+      {
+        "from": "M08",
+        "to": "res:db",
+        "type": "uses-resource"
+      },
+      {
+        "from": "M05",
+        "to": "M09",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M07",
+        "to": "M09",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M08",
+        "to": "M09",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M02",
+        "to": "M09",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M09",
+        "to": "iface:RoutingDecision",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "M10",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M07",
+        "to": "M10",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M09",
+        "to": "M10",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M10",
+        "to": "iface:InferenceLineage",
+        "type": "provides"
+      },
+      {
+        "from": "M10",
+        "to": "res:db",
+        "type": "uses-resource"
+      },
+      {
+        "from": "M02",
+        "to": "M11",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M11",
+        "to": "iface:ProviderCutoverProof",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "M12",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M04",
+        "to": "M12",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M12",
+        "to": "iface:CodexReviewConnector",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "M13",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M04",
+        "to": "M13",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M13",
+        "to": "iface:DevTaskProfiles",
+        "type": "provides"
+      },
+      {
+        "from": "M12",
+        "to": "M14",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M13",
+        "to": "M14",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M14",
+        "to": "iface:ProtectedMergeGate",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "M15",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M07",
+        "to": "M15",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M15",
+        "to": "iface:ConnectorConformance",
+        "type": "provides"
+      },
+      {
+        "from": "M09",
+        "to": "M16",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M16",
+        "to": "iface:HealthBudgetSignals",
+        "type": "provides"
+      },
+      {
+        "from": "M07",
+        "to": "M17",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M17",
+        "to": "iface:SecuredCatalogue",
+        "type": "provides"
+      },
+      {
+        "from": "M10",
+        "to": "M18",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M18",
+        "to": "iface:DurableAuditLedger",
+        "type": "provides"
+      },
+      {
+        "from": "M18",
+        "to": "res:db",
+        "type": "uses-resource"
+      },
+      {
+        "from": "M08",
+        "to": "M19",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M12",
+        "to": "M19",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M13",
+        "to": "M19",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M15",
+        "to": "M19",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M19",
+        "to": "iface:QualifiedProfiles",
+        "type": "provides"
+      },
+      {
+        "from": "M04",
+        "to": "M20",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M06",
+        "to": "M20",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M09",
+        "to": "M20",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M11",
+        "to": "M20",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M14",
+        "to": "M20",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M20",
+        "to": "iface:Stage12AEvidence",
+        "type": "provides"
+      },
+      {
+        "from": "M02",
+        "to": "M21",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M08",
+        "to": "M21",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M09",
+        "to": "M21",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M21",
+        "to": "iface:RouterDecisionRecord",
+        "type": "provides"
+      },
+      {
+        "from": "M20",
+        "to": "M22",
+        "type": "depends-on",
+        "kind": "sync",
+        "via": null
+      },
+      {
+        "from": "M22",
+        "to": "iface:PilotProtocolRun",
+        "type": "provides"
+      }
+    ],
+    "nodeTypes": {
+      "module": 22,
+      "interface": 22,
+      "shared-resource": 1
+    },
+    "edgeTypes": {
+      "provides": 22,
+      "depends-on": 38,
+      "uses-resource": 5
+    }
+  },
+  "readinessGates": [],
+  "decisionLog": [],
+  "riskRegister": [],
+  "openQuestionsRegister": [],
+  "universalTruths": [],
+  "traceabilityMatrix": {
+    "status": "derived",
+    "rows": 22
+  },
+  "planningQaChecks": [
+    {
+      "id": "QA-001",
+      "category": "substrate",
+      "status": "pass",
+      "title": "constitution.md present + non-empty",
+      "detail": ""
+    },
+    {
+      "id": "QA-002",
+      "category": "substrate",
+      "status": "pass",
+      "title": "architecture.md present + non-empty",
+      "detail": ""
+    },
+    {
+      "id": "QA-003",
+      "category": "tiering",
+      "status": "pass",
+      "title": "Every module has a valid tier (0/1/2)",
+      "detail": ""
+    },
+    {
+      "id": "QA-004",
+      "category": "status",
+      "status": "pass",
+      "title": "Every module has a valid status",
+      "detail": ""
+    },
+    {
+      "id": "QA-005",
+      "category": "review-binding",
+      "status": "pass",
+      "title": "Bound review evidence matches the current target",
+      "detail": ""
+    },
+    {
+      "id": "QA-006",
+      "category": "spec",
+      "status": "pass",
+      "title": "Every module records a tier rationale",
+      "detail": ""
+    },
+    {
+      "id": "QA-007",
+      "category": "verification",
+      "status": "pass",
+      "title": "Tier-0/1 modules carry verification (G4)",
+      "detail": ""
+    },
+    {
+      "id": "QA-008",
+      "category": "grammar",
+      "status": "pass",
+      "title": "Tier-0/1 acceptance criteria use EARS/GWT",
+      "detail": ""
+    },
+    {
+      "id": "QA-009",
+      "category": "review",
+      "status": "pass",
+      "title": "Tier-0 verified modules carry a recorded dual-review verdict (structural only)",
+      "detail": ""
+    },
+    {
+      "id": "QA-010",
+      "category": "review",
+      "status": "pass",
+      "title": "Tier-0 review is cross-family independent (reviewer family != implementer family)",
+      "detail": ""
+    },
+    {
+      "id": "QA-011",
+      "category": "review",
+      "status": "pass",
+      "title": "Tier-0 records two distinct reviewer families (true dual review)",
+      "detail": ""
+    },
+    {
+      "id": "QA-012",
+      "category": "review",
+      "status": "pass",
+      "title": "Reviews were performed by the planned reviewer family (no silent substitution)",
+      "detail": ""
+    },
+    {
+      "id": "QA-013",
+      "category": "traceability",
+      "status": "pass",
+      "title": "Every module 'satisfies' a declared truth (no dangling references)",
+      "detail": ""
+    },
+    {
+      "id": "QA-014",
+      "category": "dependencies",
+      "status": "pass",
+      "title": "Dependencies resolve, are acyclic, and gate on verified",
+      "detail": ""
+    },
+    {
+      "id": "QA-015",
+      "category": "interfaces",
+      "status": "pass",
+      "title": "Every depends_on interface resolves to the target module's declared provides",
+      "detail": ""
+    },
+    {
+      "id": "QA-016",
+      "category": "modularity",
+      "status": "pass",
+      "title": "Loose coupling (no God Object, no interface-less dependency)",
+      "detail": ""
+    },
+    {
+      "id": "QA-017",
+      "category": "tiering",
+      "status": "warn",
+      "title": "Tier-0 share reasonable (14/22 = 64%)",
+      "detail": ""
+    },
+    {
+      "id": "QA-018",
+      "category": "compliance",
+      "status": "pass",
+      "title": "No compliance obligations declared (G3 not applicable)",
+      "detail": "this plan declares no `compliance` tags \u2014 G3 is a no-op, as for most non-regulated projects"
+    }
+  ],
+  "handoffPack": {
+    "status": "derived",
+    "note": "Per-module handoff packs are generated transiently from each module spec + architecture.md + constitution.md; see handoff.md and Decisions/Architecture tabs."
+  },
+  "approvalState": {
+    "status": "planning",
+    "buildBlocked": true,
+    "verifiedModules": 0,
+    "totalModules": 22
+  },
+  "counts": {
+    "tier": {
+      "0": 14,
+      "1": 7,
+      "2": 1
+    },
+    "status": {
+      "draft": 20,
+      "blocked-needs-decision": 2
+    },
+    "model": {
+      "Opus": 21,
+      "Sonnet": 1
+    }
+  },
+  "health": {
+    "verifiedPct": 0,
+    "tier0ReviewedPct": 0,
+    "gatePassPct": 94,
+    "openVerifyCount": 0,
+    "modules": 22,
+    "tier0": 14,
+    "score": 85.2,
+    "tri": {
+      "pass": 260,
+      "warn": 0,
+      "fail": 70,
+      "na": 44,
+      "exempt": 0
+    },
+    "byLevel": {
+      "DoR": {
+        "pass": 64,
+        "total": 68
+      },
+      "G1": {
+        "pass": 44,
+        "total": 44
+      },
+      "G3": {
+        "pass": 42,
+        "total": 42
+      },
+      "G4": {
+        "pass": 44,
+        "total": 44
+      },
+      "bronze": {
+        "pass": 44,
+        "total": 44
+      },
+      "silver": {
+        "pass": 22,
+        "total": 44
+      },
+      "gold": {
+        "pass": 0,
+        "total": 44
+      }
+    },
+    "maturity": {
+      "bronze": 22,
+      "silver": 0,
+      "gold": 0
+    },
+    "qualityCoveragePct": 0,
+    "dorReadyPct": 91,
+    "dimensions": {
+      "verified": 0,
+      "quality": 0,
+      "coverage": 91,
+      "risk": 85
+    },
+    "byGroup": {}
+  },
+  "diagrams": {
+    "container": "graph LR\n  M01[\"M01: Disable central CLI defaults<br/>tier 0\"]\n  M02[\"M02: humanos-ai-contracts v1<br/>tier 0\"]\n  M03[\"M03: Claude CLI process safety<br/>tier 0\"]\n  M04[\"M04: Endpoint AI Runtime Broker<br/>tier 0\"]\n  M05[\"M05: Provider-scoped credential resolution<br/>tier 0\"]\n  M06[\"M06: Evidence-object persistence (no raw prompts)<br/>tier 0\"]\n  M07[\"M07: Exact model-deployment registry<br/>tier 0\"]\n  M08[\"M08: Qualification lifecycle & hard gate<br/>tier 0\"]\n  M09[\"M09: Eligibility router & canonical fallback<br/>tier 0\"]\n  M10[\"M10: Complete inference lineage<br/>tier 0\"]\n  M11[\"M11: Monorepo provider cutover<br/>tier 0\"]\n  M12[\"M12: Codex read-only review wrapper<br/>tier 1\"]\n  M13[\"M13: Fable & Opus development task profiles<br/>tier 1\"]\n  M14[\"M14: CI + named-human merge gate<br/>tier 0\"]\n  M15[\"M15: Provider connectors (native + constrained compatible)<br/>tier 1\"]\n  M16[\"M16: Provider health, budgets & circuit breaking<br/>tier 1\"]\n  M17[\"M17: Model catalogue endpoint security<br/>tier 1\"]\n  M18[\"M18: Durable audit ledger & quality feedback<br/>tier 1\"]\n  M19[\"M19: Qualification corpus & initial runs<br/>tier 1\"]\n  M20[\"M20: Stage 12A assurance execution<br/>tier 0\"]\n  M21[\"M21: Standalone router decision spike<br/>tier 2\"]\n  M22[\"M22: Pilot protocol readiness<br/>tier 0\"]\n  M02 --> M04\n  M03 --> M04\n  M02 --> M05\n  M02 --> M06\n  M02 --> M07\n  M07 --> M08\n  M05 --> M09\n  M07 --> M09\n  M08 --> M09\n  M02 --> M09\n  M02 --> M10\n  M07 --> M10\n  M09 --> M10\n  M02 --> M11\n  M02 --> M12\n  M04 --> M12\n  M02 --> M13\n  M04 --> M13\n  M12 --> M14\n  M13 --> M14\n  M02 --> M15\n  M07 --> M15\n  M09 --> M16\n  M07 --> M17\n  M10 --> M18\n  M08 --> M19\n  M12 --> M19\n  M13 --> M19\n  M15 --> M19\n  M04 --> M20\n  M06 --> M20\n  M09 --> M20\n  M11 --> M20\n  M14 --> M20\n  M02 --> M21\n  M08 --> M21\n  M09 --> M21\n  M20 --> M22",
+    "context": "graph TD\n  subgraph W1[\"Wave 1\"]\n    M01[\"M01: Disable central CLI defaults\"]\n    M02[\"M02: humanos-ai-contracts v1\"]\n    M03[\"M03: Claude CLI process safety\"]\n  end\n  subgraph W2[\"Wave 2\"]\n    M04[\"M04: Endpoint AI Runtime Broker\"]\n    M05[\"M05: Provider-scoped credential resolution\"]\n    M06[\"M06: Evidence-object persistence (no raw prompts)\"]\n    M07[\"M07: Exact model-deployment registry\"]\n  end\n  subgraph W3[\"Wave 3\"]\n    M08[\"M08: Qualification lifecycle & hard gate\"]\n    M09[\"M09: Eligibility router & canonical fallback\"]\n    M10[\"M10: Complete inference lineage\"]\n    M11[\"M11: Monorepo provider cutover\"]\n    M12[\"M12: Codex read-only review wrapper\"]\n    M13[\"M13: Fable & Opus development task profiles\"]\n  end\n  subgraph W4[\"Wave 4\"]\n    M14[\"M14: CI + named-human merge gate\"]\n    M15[\"M15: Provider connectors (native + constrained compatible)\"]\n    M16[\"M16: Provider health, budgets & circuit breaking\"]\n    M17[\"M17: Model catalogue endpoint security\"]\n    M18[\"M18: Durable audit ledger & quality feedback\"]\n  end\n  subgraph W5[\"Wave 5\"]\n    M19[\"M19: Qualification corpus & initial runs\"]\n    M20[\"M20: Stage 12A assurance execution\"]\n    M21[\"M21: Standalone router decision spike\"]\n  end\n  subgraph W6[\"Wave 6\"]\n    M22[\"M22: Pilot protocol readiness\"]\n  end"
+  },
+  "groups": [],
+  "changeProposals": [],
+  "observations": [],
+  "scorecard": [
+    {
+      "id": "M01",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M02",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M03",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M04",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M05",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M06",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M07",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M08",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M09",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M10",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M11",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M12",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M13",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M14",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M15",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M16",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M17",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M18",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M19",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M20",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "na"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": true,
+      "score": 86.5,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M21",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "fail"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "fail"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "na"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "na"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": false,
+      "score": 70.6,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    },
+    {
+      "id": "M22",
+      "results": [
+        {
+          "id": "dor-spec",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add an '## Acceptance criteria' section with at least one WHEN/GIVEN-style criterion.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-tier",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Add a 'tier_rationale:' line to the module front-matter explaining the risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "dor-unblocked",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "high",
+          "remediation": "Resolve the open decision (status is blocked-needs-decision) before the module is Ready.",
+          "status": "fail"
+        },
+        {
+          "id": "dor-deps",
+          "level": "DoR",
+          "kind": "dor",
+          "severity": "medium",
+          "remediation": "Hold until every depends_on module reaches implementation-verified, or remove the unmet dependency.",
+          "status": "fail"
+        },
+        {
+          "id": "g1-tier-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set 'tier:' to 0, 1 or 2 in the module front-matter.",
+          "status": "pass"
+        },
+        {
+          "id": "g1-status-valid",
+          "level": "G1",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Set a 'status:' (draft, spec-approved, in-progress, implementation-verified, superseded, blocked-needs-decision, or needs-revalidation).",
+          "status": "pass"
+        },
+        {
+          "id": "g3-grammar",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "medium",
+          "remediation": "Rewrite acceptance criteria as WHEN/GIVEN...THE SYSTEM SHALL... statements.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-verification",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Add a 'Definition of done' / verification section naming the tests that must pass.",
+          "status": "pass"
+        },
+        {
+          "id": "g3-review",
+          "level": "G3",
+          "kind": "gate",
+          "severity": "critical",
+          "remediation": "Add a review: block (reviewer + status: approved) to the module front-matter.",
+          "status": "na"
+        },
+        {
+          "id": "g4-satisfies",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Ensure each id in 'satisfies:' resolves to a real truth/requirement in the plan.",
+          "status": "pass"
+        },
+        {
+          "id": "g4-interface",
+          "level": "G4",
+          "kind": "gate",
+          "severity": "high",
+          "remediation": "Make every depends_on interface match a 'provides:' entry on another module.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-rationale",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'tier_rationale:' line explaining the assigned risk tier.",
+          "status": "pass"
+        },
+        {
+          "id": "bronze-deps-declared",
+          "level": "bronze",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "List the interfaces this module provides under 'provides:' (Tier-2 leaves may have none).",
+          "status": "pass"
+        },
+        {
+          "id": "silver-quality",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "medium",
+          "remediation": "For each 'quality:' attribute, add an acceptance criterion (or quality_scenarios block) that exercises it.",
+          "status": "pass"
+        },
+        {
+          "id": "silver-review-commit",
+          "level": "silver",
+          "kind": "maturity",
+          "severity": "high",
+          "remediation": "Record a review verdict (reviewer + approved status, referencing the implementing commit).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-dual-family",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a second, independent reviewer family (e.g. a human reviewer alongside the agent).",
+          "status": "fail"
+        },
+        {
+          "id": "gold-paths",
+          "level": "gold",
+          "kind": "maturity",
+          "severity": "low",
+          "remediation": "Add a 'paths:' front-matter field (globs this module owns) so scoped rules can attach.",
+          "status": "fail"
+        }
+      ],
+      "gateLevel": "G4",
+      "maturity": "bronze",
+      "dorReady": false,
+      "score": 74.4,
+      "nextTier": "silver",
+      "tierBlockers": [
+        "silver-review-commit"
+      ]
+    }
+  ],
+  "initiatives": [],
+  "exemptions": []
+}

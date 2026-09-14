@@ -1,0 +1,1287 @@
+{
+  "schema_version": 1,
+  "modules": [
+    {
+      "id": "M01",
+      "title": "Disable central CLI defaults",
+      "tier": 0,
+      "tier_rationale": "a default route can silently bill/expose a personal subscription account (AUD-009) \u2014 credential/account boundary",
+      "status": "draft",
+      "wave": 1,
+      "depends_on": [],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "RouteDefaultsPolicy"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M01.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN any central or background workload requests a route, THE SYSTEM SHALL never select the user-subscription CLI unless the request carries the explicit endpoint-interactive development profile.",
+        "WHEN the endpoint-interactive profile is absent, THE SYSTEM SHALL resolve defaults exclusively to approved connector routes."
+      ],
+      "satisfies": [
+        "T02"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [],
+      "provides_full": [
+        {
+          "interface": "RouteDefaultsPolicy",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "title": "humanos-ai-contracts v1",
+      "tier": 0,
+      "tier_rationale": "the contract of record every governed AI call rides; every dependent module binds to it",
+      "status": "draft",
+      "wave": 1,
+      "depends_on": [],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "AiContractsV1"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M02.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the shared client, runtime gateway and ai-execution-service exchange requests, THE SYSTEM SHALL pass versioned contract fixtures including negative cases (REM-002 acceptance).",
+        "WHEN a pure service-to-service request arrives, THE SYSTEM SHALL reconcile a service identity with audience and purpose claims before honouring a caller-supplied tenant (AUD-016).",
+        "WHEN a field the contract requires is absent, THE SYSTEM SHALL refuse the request with the canonical error taxonomy, never default it."
+      ],
+      "satisfies": [
+        "T03"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [],
+      "provides_full": [
+        {
+          "interface": "AiContractsV1",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "title": "Claude CLI process safety",
+      "tier": 0,
+      "tier_rationale": "concrete security/reliability defect \u2014 path hijack, inherited env, stderr deadlock, ineffective timeout (AUD-011)",
+      "status": "draft",
+      "wave": 1,
+      "depends_on": [],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "SafeCliInvocation"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M03.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a CLI process hangs, THE SYSTEM SHALL terminate the whole process tree within the timeout budget with no stderr deadlock.",
+        "WHEN the CLI is resolved, THE SYSTEM SHALL execute only a signed executable from an approved path with a clean environment and approved working directory, and SHALL NOT reach outside the approved root."
+      ],
+      "satisfies": [
+        "T04"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [],
+      "provides_full": [
+        {
+          "interface": "SafeCliInvocation",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M04",
+      "title": "Endpoint AI Runtime Broker",
+      "tier": 0,
+      "tier_rationale": "moves subscription/local-runtime execution to the managed endpoint boundary; central OAuth access is a hard boundary (T04)",
+      "status": "draft",
+      "wave": 2,
+      "depends_on": [
+        "M02",
+        "M03"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "EndpointBrokerAPI"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M04.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN any central component needs endpoint execution, THE SYSTEM SHALL delegate to the broker and SHALL NOT access user-local OAuth or credentials.",
+        "WHEN the broker executes, THE SYSTEM SHALL report health/action-required states and return canonical contract results."
+      ],
+      "satisfies": [
+        "T04"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M03",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "EndpointBrokerAPI",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M05",
+      "title": "Provider-scoped credential resolution",
+      "tier": 0,
+      "tier_rationale": "silent tenant-to-platform account/data-route switch is a privacy/billing incident (AUD-015)",
+      "status": "draft",
+      "wave": 2,
+      "depends_on": [
+        "M02"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "CredentialResolution"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M05.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the tenant credential service is unavailable, THE SYSTEM SHALL fail per policy and SHALL NOT silently switch to a platform key, account, provider or data route.",
+        "WHEN credentials rotate, THE SYSTEM SHALL pass rotation, outage, tenant and identity tests without cross-tenant leakage."
+      ],
+      "satisfies": [
+        "T05"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "CredentialResolution",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M06",
+      "title": "Evidence-object persistence (no raw prompts)",
+      "tier": 0,
+      "tier_rationale": "writes the record of record for AI evidence; raw prompt/output persistence is incompatible with retention/employee rights (AUD-018)",
+      "status": "draft",
+      "wave": 2,
+      "depends_on": [
+        "M02"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "EvidenceObjectRefs"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M06.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a new execution is persisted, THE SYSTEM SHALL store no mandatory raw input/output text fields \u2014 only classified object references and minimised metadata.",
+        "WHEN retention, correction, deletion or hold events occur, THE SYSTEM SHALL propagate them across the evidence lineage and pass the privacy/DR test set."
+      ],
+      "satisfies": [
+        "T06"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "EvidenceObjectRefs",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M07",
+      "title": "Exact model-deployment registry",
+      "tier": 0,
+      "tier_rationale": "route identity is the substrate of qualification and audit; family/alias-only identity voids both (T07)",
+      "status": "draft",
+      "wave": 2,
+      "depends_on": [
+        "M02"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "ModelDeploymentRegistry"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M07.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a route becomes active, THE SYSTEM SHALL represent it by an exact model deployment and SHALL NOT accept a family/alias-only representation.",
+        "WHEN a deployment alias cannot be resolved to an exact identity, THE SYSTEM SHALL shorten or disable its qualification (AUD-020)."
+      ],
+      "satisfies": [
+        "T07"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "ModelDeploymentRegistry",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M08",
+      "title": "Qualification lifecycle & hard gate",
+      "tier": 0,
+      "tier_rationale": "decides which model configurations may execute employee-affecting work; an unqualified route is a policy breach (T08)",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M07"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "QualificationGate"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M08.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a route candidate lacks a current qualification for the task\u00d7effort cell, THE SYSTEM SHALL exclude it before selection (negative tests).",
+        "WHEN a qualification expires, THE SYSTEM SHALL stop selecting the configuration until requalified.",
+        "WHILE tool calling is prompt-simulated (AUD-012), THE SYSTEM SHALL never qualify that mode for production tool-use cells."
+      ],
+      "satisfies": [
+        "T08"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "QualificationGate",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M09",
+      "title": "Eligibility router & canonical fallback",
+      "tier": 0,
+      "tier_rationale": "the routing decision is the policy enforcement point for every AI call; fallback semantics carry employee-rights consequences (T09)",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M05",
+        "M07",
+        "M08",
+        "M02"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "RoutingDecision"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M09.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN candidates are filtered, THE SYSTEM SHALL record every rejected candidate's reason auditably, and cost SHALL NOT make an ineligible route eligible.",
+        "WHEN no eligible route exists, THE SYSTEM SHALL resolve to the canonical no-route/human-review/no-AI terminal \u2014 never a silent material route change.",
+        "WHEN AI is unavailable, THE SYSTEM SHALL never convert that into employee failure (journey tests)."
+      ],
+      "satisfies": [
+        "T08",
+        "T09"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M05",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M08",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "RoutingDecision",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M10",
+      "title": "Complete inference lineage",
+      "tier": 0,
+      "tier_rationale": "material AI-assisted domain records are records of record; incomplete lineage breaks audit and review rights (T10)",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M02",
+        "M07",
+        "M09"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "InferenceLineage"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M10.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a material AI-assisted domain record is written, THE SYSTEM SHALL attach complete lineage \u2014 100% coverage in the audit read-model (REM-011)."
+      ],
+      "satisfies": [
+        "T10"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M09",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "InferenceLineage",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M11",
+      "title": "Monorepo provider cutover",
+      "tier": 0,
+      "tier_rationale": "direct provider SDK/HTTP use outside the choke point voids every gateway control (T01)",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M02"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "ProviderCutoverProof"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M11.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the dependency scan runs, THE SYSTEM SHALL show no service outside approved connector modules importing provider config/SDK or sending provider HTTP requests."
+      ],
+      "satisfies": [
+        "T01"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "ProviderCutoverProof",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M12",
+      "title": "Codex read-only review wrapper",
+      "tier": 1,
+      "tier_rationale": "development tooling with permission boundaries; performs no record-of-record mutation itself \u2014 M14 is the merge authority",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M02",
+        "M04"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "CodexReviewConnector"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M12.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN Codex reviews plan/diff/test evidence, THE SYSTEM SHALL prevent any worktree modification or merge action (permission tests).",
+        "WHEN findings are produced, THE SYSTEM SHALL capture the exact model identity and structured finding schema; injection tests pass."
+      ],
+      "satisfies": [
+        "T11"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M04",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "CodexReviewConnector",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M13",
+      "title": "Fable & Opus development task profiles",
+      "tier": 1,
+      "tier_rationale": "profile/policy configuration for dev routing; enforcement authorities are M08/M14",
+      "status": "draft",
+      "wave": 3,
+      "depends_on": [
+        "M02",
+        "M04"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "DevTaskProfiles"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M13.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the Fable profile executes, THE SYSTEM SHALL refuse coding-write capabilities; WHEN the Opus profile executes, THE SYSTEM SHALL refuse self-review/merge capabilities (policy tests)."
+      ],
+      "satisfies": [
+        "T11"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M04",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "DevTaskProfiles",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M14",
+      "title": "CI + named-human merge gate",
+      "tier": 0,
+      "tier_rationale": "protected-branch merge is an irreversible governance act; an AI-only merge is the exact failure T11 forbids",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M12",
+        "M13"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "ProtectedMergeGate"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M14.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a merge to a protected branch is attempted, THE SYSTEM SHALL require deterministic CI, resolved Codex blockers/majors and a named human approval \u2014 no AI-only merge (repository control test)."
+      ],
+      "satisfies": [
+        "T11"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M12",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M13",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "ProtectedMergeGate",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M15",
+      "title": "Provider connectors (native + constrained compatible)",
+      "tier": 1,
+      "tier_rationale": "connectors execute under M09's eligibility gates; floor anchor for provider correctness",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M02",
+        "M07"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "ConnectorConformance"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M15.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a connector lacks a probed capability, THE SYSTEM SHALL reject the feature before execution (conformance).",
+        "WHEN provider errors occur, THE SYSTEM SHALL keep sensitive provider bodies out of logs and record exact route/features."
+      ],
+      "satisfies": [
+        "T01"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "ConnectorConformance",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M16",
+      "title": "Provider health, budgets & circuit breaking",
+      "tier": 1,
+      "tier_rationale": "operational signal source consumed by the router; no direct record mutation",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M09"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "HealthBudgetSignals"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M16.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN a route is unhealthy or over budget, THE SYSTEM SHALL exclude it without weakening any policy guarantee (chaos/load tests)."
+      ],
+      "satisfies": [
+        "T08"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M09",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "HealthBudgetSignals",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M17",
+      "title": "Model catalogue endpoint security",
+      "tier": 1,
+      "tier_rationale": "information-disclosure control on the registry surface",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M07"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "SecuredCatalogue"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M17.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN an unauthenticated caller queries the catalogue, THE SYSTEM SHALL NOT enumerate internal providers, prices or routes (API security test)."
+      ],
+      "satisfies": [
+        "T07"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M07",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "SecuredCatalogue",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M18",
+      "title": "Durable audit ledger & quality feedback",
+      "tier": 1,
+      "tier_rationale": "durability layer under M10's lineage; loses no mandatory audit events",
+      "status": "draft",
+      "wave": 4,
+      "depends_on": [
+        "M10"
+      ],
+      "shared_resources": [
+        "db"
+      ],
+      "compliance": [],
+      "provides": [
+        "DurableAuditLedger"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M18.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the ledger is unavailable, THE SYSTEM SHALL NOT lose mandatory audit/quality events (outbox/reconciliation tests)."
+      ],
+      "satisfies": [
+        "T10"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M10",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "DurableAuditLedger",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M19",
+      "title": "Qualification corpus & initial runs",
+      "tier": 1,
+      "tier_rationale": "produces signed evaluation artefacts; the enforcement authority remains M08",
+      "status": "draft",
+      "wave": 5,
+      "depends_on": [
+        "M08",
+        "M12",
+        "M13",
+        "M15"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "QualifiedProfiles"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M19.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN qualification runs complete, THE SYSTEM SHALL produce signed task\u00d7effort profiles with limitations, and SHALL NOT emit a global model approval."
+      ],
+      "satisfies": [
+        "T08",
+        "T11"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M08",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M12",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M13",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M15",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "QualifiedProfiles",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M20",
+      "title": "Stage 12A assurance execution",
+      "tier": 0,
+      "tier_rationale": "the hardening gate of record before any employee pilot (T13)",
+      "status": "draft",
+      "wave": 5,
+      "depends_on": [
+        "M04",
+        "M06",
+        "M09",
+        "M11",
+        "M14"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "Stage12AEvidence"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M20.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the gate is convened, THE SYSTEM SHALL present per-track evidence rows mapped to the Stage 12A gate sheet; PASS or RESTRICT is a human decision this module cannot make (OI-03)."
+      ],
+      "satisfies": [
+        "T13"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M04",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M06",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M09",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M11",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M14",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "Stage12AEvidence",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M21",
+      "title": "Standalone router decision spike",
+      "tier": 2,
+      "tier_rationale": "a decision spike producing an ADR; no production operation performed",
+      "status": "blocked-needs-decision",
+      "wave": 5,
+      "depends_on": [
+        "M02",
+        "M08",
+        "M09"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "RouterDecisionRecord"
+      ],
+      "model": "Sonnet",
+      "reviewer": "Codex",
+      "file": "modules\\M21.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHEN the CTO decision is recorded, THE SYSTEM SHALL either close this module as decision-evidence-only or open a build change-proposal via plan-change."
+      ],
+      "satisfies": [],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M02",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M08",
+          "kind": "sync",
+          "via": null
+        },
+        {
+          "to": "M09",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "RouterDecisionRecord",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    },
+    {
+      "id": "M22",
+      "title": "Pilot protocol readiness",
+      "tier": 0,
+      "tier_rationale": "a real employee pilot bears directly on employee rights; running it early is the exact harm T13 fences",
+      "status": "blocked-needs-decision",
+      "wave": 6,
+      "depends_on": [
+        "M20"
+      ],
+      "shared_resources": [],
+      "compliance": [],
+      "provides": [
+        "PilotProtocolRun"
+      ],
+      "model": "Opus",
+      "reviewer": "Codex",
+      "file": "modules\\M22.md",
+      "has_verification": true,
+      "workflow": {
+        "wip": false,
+        "impl": false,
+        "verify": false,
+        "review": false
+      },
+      "tracker_notes": "",
+      "acceptance": [
+        "WHILE the Stage 12A gate has not passed or restricted, THE SYSTEM SHALL NOT start any real employee pilot.",
+        "WHEN the pilot runs, THE SYSTEM SHALL uphold participant rights (inspect/correct/dispute/appeal) and never let AI directly decide dismissal, pay, promotion, probation or discipline."
+      ],
+      "satisfies": [
+        "T12",
+        "T13"
+      ],
+      "review": {},
+      "review_ok": false,
+      "review_deviation": false,
+      "complexity": null,
+      "group": null,
+      "owns": [],
+      "dep_edges": [
+        {
+          "to": "M20",
+          "kind": "sync",
+          "via": null
+        }
+      ],
+      "provides_full": [
+        {
+          "interface": "PilotProtocolRun",
+          "version": 1,
+          "kind": "sync"
+        }
+      ]
+    }
+  ]
+}

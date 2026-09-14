@@ -1,0 +1,928 @@
+{
+ "directed": true,
+ "metadata": {
+  "generator": "spec-driven-planning/graph_export",
+  "source": "plan.json (derived from module front-matter + registers)",
+  "plan": "intelligence",
+  "nodeTypes": {
+   "module": 22,
+   "interface": 22,
+   "shared-resource": 1
+  },
+  "edgeTypes": {
+   "provides": 22,
+   "depends-on": 38,
+   "uses-resource": 5
+  },
+  "communities": [
+   "interfaces",
+   "shared-resources",
+   "wave-1",
+   "wave-2",
+   "wave-3",
+   "wave-4",
+   "wave-5",
+   "wave-6"
+  ]
+ },
+ "nodes": [
+  {
+   "id": "iface:AiContractsV1",
+   "label": "AiContractsV1",
+   "norm_label": "aicontractsv1",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:CodexReviewConnector",
+   "label": "CodexReviewConnector",
+   "norm_label": "codexreviewconnector",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:ConnectorConformance",
+   "label": "ConnectorConformance",
+   "norm_label": "connectorconformance",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:CredentialResolution",
+   "label": "CredentialResolution",
+   "norm_label": "credentialresolution",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:DevTaskProfiles",
+   "label": "DevTaskProfiles",
+   "norm_label": "devtaskprofiles",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:DurableAuditLedger",
+   "label": "DurableAuditLedger",
+   "norm_label": "durableauditledger",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:EndpointBrokerAPI",
+   "label": "EndpointBrokerAPI",
+   "norm_label": "endpointbrokerapi",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:EvidenceObjectRefs",
+   "label": "EvidenceObjectRefs",
+   "norm_label": "evidenceobjectrefs",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:HealthBudgetSignals",
+   "label": "HealthBudgetSignals",
+   "norm_label": "healthbudgetsignals",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:InferenceLineage",
+   "label": "InferenceLineage",
+   "norm_label": "inferencelineage",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:ModelDeploymentRegistry",
+   "label": "ModelDeploymentRegistry",
+   "norm_label": "modeldeploymentregistry",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:PilotProtocolRun",
+   "label": "PilotProtocolRun",
+   "norm_label": "pilotprotocolrun",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:ProtectedMergeGate",
+   "label": "ProtectedMergeGate",
+   "norm_label": "protectedmergegate",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:ProviderCutoverProof",
+   "label": "ProviderCutoverProof",
+   "norm_label": "providercutoverproof",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:QualificationGate",
+   "label": "QualificationGate",
+   "norm_label": "qualificationgate",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:QualifiedProfiles",
+   "label": "QualifiedProfiles",
+   "norm_label": "qualifiedprofiles",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:RouteDefaultsPolicy",
+   "label": "RouteDefaultsPolicy",
+   "norm_label": "routedefaultspolicy",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:RouterDecisionRecord",
+   "label": "RouterDecisionRecord",
+   "norm_label": "routerdecisionrecord",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:RoutingDecision",
+   "label": "RoutingDecision",
+   "norm_label": "routingdecision",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:SafeCliInvocation",
+   "label": "SafeCliInvocation",
+   "norm_label": "safecliinvocation",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:SecuredCatalogue",
+   "label": "SecuredCatalogue",
+   "norm_label": "securedcatalogue",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "iface:Stage12AEvidence",
+   "label": "Stage12AEvidence",
+   "norm_label": "stage12aevidence",
+   "type": "interface",
+   "community": "interfaces"
+  },
+  {
+   "id": "M01",
+   "label": "Disable central CLI defaults",
+   "norm_label": "disable central cli defaults",
+   "type": "module",
+   "community": "wave-1",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M01.md",
+   "summary": "Disable central CLI defaults"
+  },
+  {
+   "id": "M02",
+   "label": "humanos-ai-contracts v1",
+   "norm_label": "humanos ai contracts v1",
+   "type": "module",
+   "community": "wave-1",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M02.md",
+   "summary": "humanos-ai-contracts v1"
+  },
+  {
+   "id": "M03",
+   "label": "Claude CLI process safety",
+   "norm_label": "claude cli process safety",
+   "type": "module",
+   "community": "wave-1",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M03.md",
+   "summary": "Claude CLI process safety"
+  },
+  {
+   "id": "M04",
+   "label": "Endpoint AI Runtime Broker",
+   "norm_label": "endpoint ai runtime broker",
+   "type": "module",
+   "community": "wave-2",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M04.md",
+   "summary": "Endpoint AI Runtime Broker"
+  },
+  {
+   "id": "M05",
+   "label": "Provider-scoped credential resolution",
+   "norm_label": "provider scoped credential resolution",
+   "type": "module",
+   "community": "wave-2",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M05.md",
+   "summary": "Provider-scoped credential resolution"
+  },
+  {
+   "id": "M06",
+   "label": "Evidence-object persistence (no raw prompts)",
+   "norm_label": "evidence object persistence no raw prompts",
+   "type": "module",
+   "community": "wave-2",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M06.md",
+   "summary": "Evidence-object persistence (no raw prompts)"
+  },
+  {
+   "id": "M07",
+   "label": "Exact model-deployment registry",
+   "norm_label": "exact model deployment registry",
+   "type": "module",
+   "community": "wave-2",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M07.md",
+   "summary": "Exact model-deployment registry"
+  },
+  {
+   "id": "M08",
+   "label": "Qualification lifecycle & hard gate",
+   "norm_label": "qualification lifecycle hard gate",
+   "type": "module",
+   "community": "wave-3",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M08.md",
+   "summary": "Qualification lifecycle & hard gate"
+  },
+  {
+   "id": "M09",
+   "label": "Eligibility router & canonical fallback",
+   "norm_label": "eligibility router canonical fallback",
+   "type": "module",
+   "community": "wave-3",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M09.md",
+   "summary": "Eligibility router & canonical fallback"
+  },
+  {
+   "id": "M10",
+   "label": "Complete inference lineage",
+   "norm_label": "complete inference lineage",
+   "type": "module",
+   "community": "wave-3",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M10.md",
+   "summary": "Complete inference lineage"
+  },
+  {
+   "id": "M11",
+   "label": "Monorepo provider cutover",
+   "norm_label": "monorepo provider cutover",
+   "type": "module",
+   "community": "wave-3",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M11.md",
+   "summary": "Monorepo provider cutover"
+  },
+  {
+   "id": "M12",
+   "label": "Codex read-only review wrapper",
+   "norm_label": "codex read only review wrapper",
+   "type": "module",
+   "community": "wave-3",
+   "status": "draft",
+   "tier": 1,
+   "source_file": "modules\\M12.md",
+   "summary": "Codex read-only review wrapper"
+  },
+  {
+   "id": "M13",
+   "label": "Fable & Opus development task profiles",
+   "norm_label": "fable opus development task profiles",
+   "type": "module",
+   "community": "wave-3",
+   "status": "draft",
+   "tier": 1,
+   "source_file": "modules\\M13.md",
+   "summary": "Fable & Opus development task profiles"
+  },
+  {
+   "id": "M14",
+   "label": "CI + named-human merge gate",
+   "norm_label": "ci named human merge gate",
+   "type": "module",
+   "community": "wave-4",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M14.md",
+   "summary": "CI + named-human merge gate"
+  },
+  {
+   "id": "M15",
+   "label": "Provider connectors (native + constrained compatible)",
+   "norm_label": "provider connectors native constrained compatible",
+   "type": "module",
+   "community": "wave-4",
+   "status": "draft",
+   "tier": 1,
+   "source_file": "modules\\M15.md",
+   "summary": "Provider connectors (native + constrained compatible)"
+  },
+  {
+   "id": "M16",
+   "label": "Provider health, budgets & circuit breaking",
+   "norm_label": "provider health budgets circuit breaking",
+   "type": "module",
+   "community": "wave-4",
+   "status": "draft",
+   "tier": 1,
+   "source_file": "modules\\M16.md",
+   "summary": "Provider health, budgets & circuit breaking"
+  },
+  {
+   "id": "M17",
+   "label": "Model catalogue endpoint security",
+   "norm_label": "model catalogue endpoint security",
+   "type": "module",
+   "community": "wave-4",
+   "status": "draft",
+   "tier": 1,
+   "source_file": "modules\\M17.md",
+   "summary": "Model catalogue endpoint security"
+  },
+  {
+   "id": "M18",
+   "label": "Durable audit ledger & quality feedback",
+   "norm_label": "durable audit ledger quality feedback",
+   "type": "module",
+   "community": "wave-4",
+   "status": "draft",
+   "tier": 1,
+   "source_file": "modules\\M18.md",
+   "summary": "Durable audit ledger & quality feedback"
+  },
+  {
+   "id": "M19",
+   "label": "Qualification corpus & initial runs",
+   "norm_label": "qualification corpus initial runs",
+   "type": "module",
+   "community": "wave-5",
+   "status": "draft",
+   "tier": 1,
+   "source_file": "modules\\M19.md",
+   "summary": "Qualification corpus & initial runs"
+  },
+  {
+   "id": "M20",
+   "label": "Stage 12A assurance execution",
+   "norm_label": "stage 12a assurance execution",
+   "type": "module",
+   "community": "wave-5",
+   "status": "draft",
+   "tier": 0,
+   "source_file": "modules\\M20.md",
+   "summary": "Stage 12A assurance execution"
+  },
+  {
+   "id": "M21",
+   "label": "Standalone router decision spike",
+   "norm_label": "standalone router decision spike",
+   "type": "module",
+   "community": "wave-5",
+   "status": "blocked-needs-decision",
+   "tier": 2,
+   "source_file": "modules\\M21.md",
+   "summary": "Standalone router decision spike"
+  },
+  {
+   "id": "M22",
+   "label": "Pilot protocol readiness",
+   "norm_label": "pilot protocol readiness",
+   "type": "module",
+   "community": "wave-6",
+   "status": "blocked-needs-decision",
+   "tier": 0,
+   "source_file": "modules\\M22.md",
+   "summary": "Pilot protocol readiness"
+  },
+  {
+   "id": "res:db",
+   "label": "db",
+   "norm_label": "db",
+   "type": "shared-resource",
+   "community": "shared-resources"
+  }
+ ],
+ "edges": [
+  {
+   "id": "EDGE-M01-provides-iface:RouteDefaultsPolicy",
+   "source": "M01",
+   "target": "iface:RouteDefaultsPolicy",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M04",
+   "source": "M02",
+   "target": "M04",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M05",
+   "source": "M02",
+   "target": "M05",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M06",
+   "source": "M02",
+   "target": "M06",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M07",
+   "source": "M02",
+   "target": "M07",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M09",
+   "source": "M02",
+   "target": "M09",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M10",
+   "source": "M02",
+   "target": "M10",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M11",
+   "source": "M02",
+   "target": "M11",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M12",
+   "source": "M02",
+   "target": "M12",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M13",
+   "source": "M02",
+   "target": "M13",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M15",
+   "source": "M02",
+   "target": "M15",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-depends-on-M21",
+   "source": "M02",
+   "target": "M21",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M02-provides-iface:AiContractsV1",
+   "source": "M02",
+   "target": "iface:AiContractsV1",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M03-depends-on-M04",
+   "source": "M03",
+   "target": "M04",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M03-provides-iface:SafeCliInvocation",
+   "source": "M03",
+   "target": "iface:SafeCliInvocation",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M04-depends-on-M12",
+   "source": "M04",
+   "target": "M12",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M04-depends-on-M13",
+   "source": "M04",
+   "target": "M13",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M04-depends-on-M20",
+   "source": "M04",
+   "target": "M20",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M04-provides-iface:EndpointBrokerAPI",
+   "source": "M04",
+   "target": "iface:EndpointBrokerAPI",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M05-depends-on-M09",
+   "source": "M05",
+   "target": "M09",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M05-provides-iface:CredentialResolution",
+   "source": "M05",
+   "target": "iface:CredentialResolution",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M06-depends-on-M20",
+   "source": "M06",
+   "target": "M20",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M06-provides-iface:EvidenceObjectRefs",
+   "source": "M06",
+   "target": "iface:EvidenceObjectRefs",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M06-uses-resource-res:db",
+   "source": "M06",
+   "target": "res:db",
+   "relation": "uses-resource",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M07-depends-on-M08",
+   "source": "M07",
+   "target": "M08",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M07-depends-on-M09",
+   "source": "M07",
+   "target": "M09",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M07-depends-on-M10",
+   "source": "M07",
+   "target": "M10",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M07-depends-on-M15",
+   "source": "M07",
+   "target": "M15",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M07-depends-on-M17",
+   "source": "M07",
+   "target": "M17",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M07-provides-iface:ModelDeploymentRegistry",
+   "source": "M07",
+   "target": "iface:ModelDeploymentRegistry",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M07-uses-resource-res:db",
+   "source": "M07",
+   "target": "res:db",
+   "relation": "uses-resource",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M08-depends-on-M09",
+   "source": "M08",
+   "target": "M09",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M08-depends-on-M19",
+   "source": "M08",
+   "target": "M19",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M08-depends-on-M21",
+   "source": "M08",
+   "target": "M21",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M08-provides-iface:QualificationGate",
+   "source": "M08",
+   "target": "iface:QualificationGate",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M08-uses-resource-res:db",
+   "source": "M08",
+   "target": "res:db",
+   "relation": "uses-resource",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M09-depends-on-M10",
+   "source": "M09",
+   "target": "M10",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M09-depends-on-M16",
+   "source": "M09",
+   "target": "M16",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M09-depends-on-M20",
+   "source": "M09",
+   "target": "M20",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M09-depends-on-M21",
+   "source": "M09",
+   "target": "M21",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M09-provides-iface:RoutingDecision",
+   "source": "M09",
+   "target": "iface:RoutingDecision",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M10-depends-on-M18",
+   "source": "M10",
+   "target": "M18",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M10-provides-iface:InferenceLineage",
+   "source": "M10",
+   "target": "iface:InferenceLineage",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M10-uses-resource-res:db",
+   "source": "M10",
+   "target": "res:db",
+   "relation": "uses-resource",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M11-depends-on-M20",
+   "source": "M11",
+   "target": "M20",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M11-provides-iface:ProviderCutoverProof",
+   "source": "M11",
+   "target": "iface:ProviderCutoverProof",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M12-depends-on-M14",
+   "source": "M12",
+   "target": "M14",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M12-depends-on-M19",
+   "source": "M12",
+   "target": "M19",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M12-provides-iface:CodexReviewConnector",
+   "source": "M12",
+   "target": "iface:CodexReviewConnector",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M13-depends-on-M14",
+   "source": "M13",
+   "target": "M14",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M13-depends-on-M19",
+   "source": "M13",
+   "target": "M19",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M13-provides-iface:DevTaskProfiles",
+   "source": "M13",
+   "target": "iface:DevTaskProfiles",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M14-depends-on-M20",
+   "source": "M14",
+   "target": "M20",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M14-provides-iface:ProtectedMergeGate",
+   "source": "M14",
+   "target": "iface:ProtectedMergeGate",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M15-depends-on-M19",
+   "source": "M15",
+   "target": "M19",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M15-provides-iface:ConnectorConformance",
+   "source": "M15",
+   "target": "iface:ConnectorConformance",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M16-provides-iface:HealthBudgetSignals",
+   "source": "M16",
+   "target": "iface:HealthBudgetSignals",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M17-provides-iface:SecuredCatalogue",
+   "source": "M17",
+   "target": "iface:SecuredCatalogue",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M18-provides-iface:DurableAuditLedger",
+   "source": "M18",
+   "target": "iface:DurableAuditLedger",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M18-uses-resource-res:db",
+   "source": "M18",
+   "target": "res:db",
+   "relation": "uses-resource",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M19-provides-iface:QualifiedProfiles",
+   "source": "M19",
+   "target": "iface:QualifiedProfiles",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M20-depends-on-M22",
+   "source": "M20",
+   "target": "M22",
+   "relation": "depends-on",
+   "confidence": "DECLARED",
+   "kind": "sync"
+  },
+  {
+   "id": "EDGE-M20-provides-iface:Stage12AEvidence",
+   "source": "M20",
+   "target": "iface:Stage12AEvidence",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M21-provides-iface:RouterDecisionRecord",
+   "source": "M21",
+   "target": "iface:RouterDecisionRecord",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  },
+  {
+   "id": "EDGE-M22-provides-iface:PilotProtocolRun",
+   "source": "M22",
+   "target": "iface:PilotProtocolRun",
+   "relation": "provides",
+   "confidence": "DECLARED"
+  }
+ ]
+}
