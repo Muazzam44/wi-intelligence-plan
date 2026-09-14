@@ -1,0 +1,317 @@
+[
+  {
+    "path": "00_START_HERE/AI_CODING_IMPLEMENTATION_GUIDE.md",
+    "filename": "AI_CODING_IMPLEMENTATION_GUIDE.md",
+    "category": "00_START_HERE",
+    "size_bytes": 8551,
+    "sha256": "c7587d5ab1854f2517bef332a432749cf6343f31c7c66b14d48d35c85347eba0",
+    "authority": "Current authoritative handoff",
+    "description": "Implementation rules and work-package workflow."
+  },
+  {
+    "path": "00_START_HERE/CURRENT_STATUS_AND_NEXT_ACTIONS.md",
+    "filename": "CURRENT_STATUS_AND_NEXT_ACTIONS.md",
+    "category": "00_START_HERE",
+    "size_bytes": 984,
+    "sha256": "ff895b461073bfd9520eb04b0dc13e5db3300ecedf322ac8573f7023537acaee",
+    "authority": "Current authoritative handoff",
+    "description": "Current status and next implementation sequence."
+  },
+  {
+    "path": "00_START_HERE/PROJECT_OVERVIEW.md",
+    "filename": "PROJECT_OVERVIEW.md",
+    "category": "00_START_HERE",
+    "size_bytes": 10859,
+    "sha256": "12d2bc081381b16255ba9af39423d15bb2df398d94c58e64361be5c1f9387399",
+    "authority": "Current authoritative handoff",
+    "description": "Full plain-language project explanation."
+  },
+  {
+    "path": "00_START_HERE/README_FIRST.md",
+    "filename": "README_FIRST.md",
+    "category": "00_START_HERE",
+    "size_bytes": 4146,
+    "sha256": "cff2ab72d94b6a14e1ce77879241a91b308ffae0e9439f2b062ea5da62663e4e",
+    "authority": "Current authoritative handoff",
+    "description": "Package entry point and simple explanation."
+  },
+  {
+    "path": "00_START_HERE/VALIDATION_REPORT.md",
+    "filename": "VALIDATION_REPORT.md",
+    "category": "00_START_HERE",
+    "size_bytes": 1559,
+    "sha256": "49c176def9e750cee2f54bfe55990eedcd433c7329f07bf580e6d7137cc1e114",
+    "authority": "Current authoritative handoff",
+    "description": "Workbook formula, validation and index audit."
+  },
+  {
+    "path": "00_START_HERE/WORKBOOK_GUIDE.md",
+    "filename": "WORKBOOK_GUIDE.md",
+    "category": "00_START_HERE",
+    "size_bytes": 3188,
+    "sha256": "e7e54638a2126fc8168679981244368585f443cbff1ba8d3cffe356135260020",
+    "authority": "Current authoritative handoff",
+    "description": "Workbook navigation and editing guide."
+  },
+  {
+    "path": "01_MASTER/nessovo_humanos_work_intelligence_master_handoff_validated.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_master_handoff_validated.xlsx",
+    "category": "01_MASTER",
+    "size_bytes": 1198636,
+    "sha256": "c16a813ec08dfddd6f67c30bdb8042ed4be1a308effb6960607b1e5928f361d8",
+    "authority": "Current authoritative",
+    "description": "Authoritative current workbook with START HERE, AI coding handoff and validation summary."
+  },
+  {
+    "path": "01_MASTER/nessovo_master_start_here_preview.png",
+    "filename": "nessovo_master_start_here_preview.png",
+    "category": "01_MASTER",
+    "size_bytes": 389840,
+    "sha256": "4d66d95029976b696a5e690995255039bf3a1d73270dea426ba5b832ae0107ae",
+    "authority": "Current reference",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "02_PROMPTS/nessovo_humanos_combined_prompt_stage_10_11.md",
+    "filename": "nessovo_humanos_combined_prompt_stage_10_11.md",
+    "category": "02_PROMPTS",
+    "size_bytes": 17082,
+    "sha256": "88e7fd840fe6088e06c5e5e7db55d22a5dd8f1df891e2ef11568ab32c41af89b",
+    "authority": "Historical/reference prompt",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "02_PROMPTS/nessovo_humanos_combined_prompt_stage_6_7.md",
+    "filename": "nessovo_humanos_combined_prompt_stage_6_7.md",
+    "category": "02_PROMPTS",
+    "size_bytes": 14360,
+    "sha256": "cf6af3966860a3d7b61961729894f1528aa2a92725e2a0c2337268bcf1c93f82",
+    "authority": "Historical/reference prompt",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "02_PROMPTS/nessovo_humanos_combined_prompt_stage_8_9.md",
+    "filename": "nessovo_humanos_combined_prompt_stage_8_9.md",
+    "category": "02_PROMPTS",
+    "size_bytes": 11614,
+    "sha256": "94cc462a9016f5b4fba0445ccab0cc66d725260f83aab89b6d731c7cfdd7df04",
+    "authority": "Historical/reference prompt",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "02_PROMPTS/nessovo_humanos_final_prompt_stage_12.md",
+    "filename": "nessovo_humanos_final_prompt_stage_12.md",
+    "category": "02_PROMPTS",
+    "size_bytes": 19448,
+    "sha256": "9ba2d07b13d53db77ed5534d3774c48ab77de8502b0e95727c9b3cc3040fb8e0",
+    "authority": "Historical/reference prompt",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "02_PROMPTS/nessovo_humanos_final_prompt_stage_12_revised.md",
+    "filename": "nessovo_humanos_final_prompt_stage_12_revised.md",
+    "category": "02_PROMPTS",
+    "size_bytes": 28379,
+    "sha256": "3d96f7d914263b09feadfa54d7dc643b2f0fca1f21f6d903e5dc9c17b226bb31",
+    "authority": "Historical/reference prompt",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "02_PROMPTS/nessovo_humanos_stage_prompts_0_to_3.md",
+    "filename": "nessovo_humanos_stage_prompts_0_to_3.md",
+    "category": "02_PROMPTS",
+    "size_bytes": 21581,
+    "sha256": "a34790317d118d3a168b5ed400034fa00cf7d57dca6cd80015c0ad7b6f1cf1a2",
+    "authority": "Historical/reference prompt",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "02_PROMPTS/nessovo_humanos_stage_prompts_2_to_5.md",
+    "filename": "nessovo_humanos_stage_prompts_2_to_5.md",
+    "category": "02_PROMPTS",
+    "size_bytes": 12343,
+    "sha256": "5c3103a0d8ea611200c2de2edb6cb09d4698cd40dbeb32edd5d2d9524bde8722",
+    "authority": "Historical/reference prompt",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 203172,
+    "sha256": "cc8bb70427938d781300b084372cd522a344ec09ed64ea157b915b3de6afddff",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan_ai_amendment_a01.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan_ai_amendment_a01.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 1013465,
+    "sha256": "3af63a02dde79c4de75f993f785ebd13e1855a91f5f8d780bf3a4d038eb3b5a0",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan_stage_0_1.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan_stage_0_1.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 338716,
+    "sha256": "e72acb1c2eaf17545953da17b1d122888c02109ae6dd2fa345ca4720fcfb1059",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan_stage_10_11.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan_stage_10_11.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 891692,
+    "sha256": "3bf2b3c19c89923c6ccf9ba40daa896244ba2a3e5e6ec881a8fe9acff4002d76",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan_stage_12_final.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan_stage_12_final.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 1150652,
+    "sha256": "04d48720554ebb46c7d6adcc4451f2e01a138769fb303d5af7b4b18129ce644e",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan_stage_2_3.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan_stage_2_3.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 452985,
+    "sha256": "040e396193f337af94d7178a5b6ebe0aa8da8b3b1b16abab0d99033b538478af",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan_stage_4_5.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan_stage_4_5.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 558540,
+    "sha256": "1f5c41708d096342681f1dc0d44d23cfc7ab5d4cd07de058f9df70135c01a33c",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan_stage_6_7.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan_stage_6_7.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 649538,
+    "sha256": "aec412dcfb1ed07e7b7ae6e1749faa2868f449de6fdaa8ae74d9674d79177be4",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_plan_stage_8_9.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_plan_stage_8_9.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 752551,
+    "sha256": "31afed262253e314637c77dea53180f549202839417935e11db45d22efc3e77b",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "03_STAGE_WORKBOOKS/nessovo_humanos_work_intelligence_stage_12a_repo_assessment.xlsx",
+    "filename": "nessovo_humanos_work_intelligence_stage_12a_repo_assessment.xlsx",
+    "category": "03_STAGE_WORKBOOKS",
+    "size_bytes": 1188494,
+    "sha256": "979ced1aad50f88e8432cfebed7786f874b40854ffa233a5472458ce42b9ef6c",
+    "authority": "Historical stage snapshot",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_ai_amendment_a01_dashboard_preview.png",
+    "filename": "nessovo_ai_amendment_a01_dashboard_preview.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 261478,
+    "sha256": "ea728c9d31613a511c02aa1d9b6dcc07451d7f86968bb22e96abdfec0281e4a9",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_stage_0_1_foundation_dashboard.png",
+    "filename": "nessovo_stage_0_1_foundation_dashboard.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 438916,
+    "sha256": "e9b5da72565c3b57552333b14a79124baac41c753fa121eb6afced8fd04c7752",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_stage_10_11_dashboard_preview.png",
+    "filename": "nessovo_stage_10_11_dashboard_preview.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 208647,
+    "sha256": "be0da381ddcd9551cc3d63b3f13a55dad3c930266fddc3dd515b25aed2d013c6",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_stage_12_dashboard_preview.png",
+    "filename": "nessovo_stage_12_dashboard_preview.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 241329,
+    "sha256": "f07f3b7fb873599c3dc5e5e1c853b25cc5752578c68a4356de547b1595bb63a1",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_stage_12a_repo_assessment_preview.png",
+    "filename": "nessovo_stage_12a_repo_assessment_preview.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 262738,
+    "sha256": "dd8f6a7f3af2060a77cf1be705e9784b096b7ddb7030a69002c62ebec3ebeac5",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_stage_2_3_dashboard_preview.png",
+    "filename": "nessovo_stage_2_3_dashboard_preview.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 200809,
+    "sha256": "dba0cf0f9b9f9058d4cd96758d990d6d195add69d5a5b14f5dd7639eac3c5ef7",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_stage_4_5_dashboard_preview.png",
+    "filename": "nessovo_stage_4_5_dashboard_preview.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 194207,
+    "sha256": "d1763b56eb4d39dfb937f2cb1e607945de6ec2b4ea4e2eb08c6c6645f11a538e",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_stage_6_7_dashboard_preview.png",
+    "filename": "nessovo_stage_6_7_dashboard_preview.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 196786,
+    "sha256": "7455d4575db94ac744760f984cce039f831da17c2738748c820c971d868f371e",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "04_PREVIEWS/nessovo_stage_8_9_dashboard_preview.png",
+    "filename": "nessovo_stage_8_9_dashboard_preview.png",
+    "category": "04_PREVIEWS",
+    "size_bytes": 202195,
+    "sha256": "8e3bee92a3048427535153cbe30c7e1e5a0930f8143920e8db86d87a434743e6",
+    "authority": "Reference preview",
+    "description": "Historical project artifact retained for traceability."
+  },
+  {
+    "path": "README_FIRST.md",
+    "filename": "README_FIRST.md",
+    "category": "ROOT",
+    "size_bytes": 4146,
+    "sha256": "cff2ab72d94b6a14e1ce77879241a91b308ffae0e9439f2b062ea5da62663e4e",
+    "authority": "Current authoritative handoff",
+    "description": "Package entry point and simple explanation."
+  }
+]
