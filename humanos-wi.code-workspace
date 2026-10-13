@@ -1,0 +1,41 @@
+{
+  // HumanOS Work Intelligence programme — one VS Code window, one root per checkout.
+  // Open with: code D:\intelligence\humanos-wi.code-workspace
+  // Each root is its own git repository or worktree, so the Source Control view lists
+  // changes per repo. "(ref)" roots are read-only references for WI work.
+  "folders": [
+    { "name": "00 plan (D:\\intelligence)",                     "path": "." },
+
+    { "name": "10 WI — main (humanos-work-intelligence)",       "path": "D:\\humanos-work-intelligence" },
+    { "name": "11 WI — worktree wi-mvp-integration (old build)", "path": "wi-mvp-integration" },
+
+    { "name": "20 Orchestration — main (ref)",                  "path": "D:\\codex-plan\\humanos-ai-orchestration" },
+    { "name": "21 Orchestration — worktree wi-mvp (runs :8099)", "path": "orchestration-wi-mvp" },
+
+    { "name": "30 Console — main (humanos-console)",            "path": "D:\\humanos-console" },
+    { "name": "31 Console — worktree wi (runs :5173)",          "path": "console-wi-mvp" },
+
+    { "name": "40 Engine — main (humanos-native-runtime, ref)", "path": "D:\\humanos-native-runtime" },
+    { "name": "41 Engine — worktree wi-mvp",                    "path": "engine-wi-mvp" },
+    { "name": "42 Engine — worktree full-suite",                "path": "engine-full-suite" },
+    { "name": "43 Engine — worktree full-suite-2",              "path": "engine-full-suite-2" },
+
+    { "name": "50 Backend services / IAM — main (hbs-work)",    "path": "D:\\hbs-work" },
+    { "name": "51 Backend services — worktree auth-lib-mvp",    "path": "auth-lib-mvp" }
+  ],
+  "settings": {
+    "git.autoRepositoryDetection": "openEditors",
+    "git.repositoryScanMaxDepth": 1,
+    "files.exclude": {
+      "**/pytest-orch*": true,
+      "**/.pytest-tmp": true,
+      "**/.tmp": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.venv": true,
+      "**/target": true,
+      "**/pytest-orch*": true
+    }
+  }
+}
