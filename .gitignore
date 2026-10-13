@@ -1,2 +1,15 @@
 # duplicate archive of the committed handoff folder
 nessovo_humanos_work_intelligence_complete_handoff (2).zip
+
+# nested checkouts / worktrees of other repos (never commit into this one)
+auth-lib-mvp/
+console-wi-mvp/
+engine-full-suite/
+engine-full-suite-2/
+engine-wi-mvp/
+orchestration-wi-mvp/
+wi-mvp-integration/
+# local test-run output and transfer scratch
+pytest-orch*/
+pytest-orchestration-*/
+.tmp/

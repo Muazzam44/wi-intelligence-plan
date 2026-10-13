@@ -1,0 +1,36 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mobility-360-board",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "set PORT=4183&& node D:\\mobility-360-plan\\plan\\server.js"],
+      "port": 4183,
+      "url": "http://localhost:4183"
+    },
+    {
+      "name": "work-intelligence",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\D--intelligence\\8a49c797-9c4d-44d7-b757-9dd5d2877aaa\\scratchpad\\wi-local\\run-wi.cmd"],
+      "port": 8102
+    },
+    {
+      "name": "console",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\D--intelligence\\8a49c797-9c4d-44d7-b757-9dd5d2877aaa\\scratchpad\\wi-local\\run-console.cmd"],
+      "port": 5173
+    },
+    {
+      "name": "iam",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\D--intelligence\\8a49c797-9c4d-44d7-b757-9dd5d2877aaa\\scratchpad\\wi-local\\run-iam.cmd"],
+      "port": 8181
+    },
+    {
+      "name": "orchestration",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\D--intelligence\\8a49c797-9c4d-44d7-b757-9dd5d2877aaa\\scratchpad\\wi-local\\run-orch.cmd"],
+      "port": 8099
+    }
+  ]
+}
