@@ -29,8 +29,20 @@
     {
       "name": "orchestration",
       "runtimeExecutable": "cmd",
-      "runtimeArgs": ["/c", "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\D--intelligence\\8a49c797-9c4d-44d7-b757-9dd5d2877aaa\\scratchpad\\wi-local\\run-orch.cmd"],
+      "runtimeArgs": ["/c", "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\D--intelligence\\72e30c0c-29d9-406d-950a-bb5ca2258f7b\\scratchpad\\wi-stack\\run-orch-integration.cmd"],
       "port": 8099
+    },
+    {
+      "name": "engine",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\D--intelligence\\72e30c0c-29d9-406d-950a-bb5ca2258f7b\\scratchpad\\wi-stack\\run-engine.cmd"],
+      "port": 8085
+    },
+    {
+      "name": "ai-execution",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\D--intelligence\\72e30c0c-29d9-406d-950a-bb5ca2258f7b\\scratchpad\\wi-stack\\run-ai-execution.cmd"],
+      "port": 8093
     }
   ]
 }
