@@ -187,3 +187,14 @@ enters the plan), and the Track C decisions landing in the first four weeks.
 2. Days 1–3: B4, B5, B6, B9, B12 (the half-day items), then B1 if the real-project demo is wanted.
 3. Days 3–10: A1 (WI-M15 round 4) and A2 (WI-M21) as the timeline's W1–W2, using Codex wait time for B2–B3.
 4. End of week 2: Friday rhythm — re-baseline this file from the observed review-round counts, record the reasons in `plan/progress.commentary.md`.
+
+## 10. The same tasks, by repository
+
+| repository | tasks |
+|---|---|
+| `humanos-work-intelligence` (WI service) | Track A: A1–A11 |
+| `humanos-ai-orchestration` | B3, B4, B8, B9, B10, B11, B12, B13; F1, F2, F3 |
+| `humanos-console` (Console + worker tools) | B2, B10, B11; F9, F10, F11 |
+| `wi-intelligence-plan` (this repo: the plan and registers) | Track C registers; Track D (D1–D6); the per-wave reconcile in Track E; the Friday re-baseline |
+| `workflow-engine` (`engine-wi-mvp`) | B8 (receipt read), B12; F4–F8 |
+| `humanos-backend-services` (`D:\hbs-work`) | B1, B5; Track E (REM-M01–M21); F12, F13, F14 |
